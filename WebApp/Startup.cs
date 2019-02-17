@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ServiceLayer;
 
-namespace OdeToFoodWebApp
+namespace WebApp
 {
     public class Startup
     {
@@ -26,7 +27,9 @@ namespace OdeToFoodWebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-        services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("InMemoryDb"));
+            services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("InMemoryDb"));
+
+            services.AddScoped<IRestaurantService, RestaurantService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

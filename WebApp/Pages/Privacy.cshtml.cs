@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace OdeToFoodWebApp.Pages
+namespace WebApp.Pages
 {
     public class PrivacyModel : PageModel
     {
