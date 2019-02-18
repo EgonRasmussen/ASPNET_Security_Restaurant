@@ -27,11 +27,11 @@ namespace OdeToFoodWebApp.Pages.Restaurants
         //public void OnGet(string searchTerm)
         public void OnGet()
         {
-            //Restaurants = _restaurantService.GetRestaurants().ToList();
+            Restaurants = _restaurantService.GetRestaurants().ToList();
 
             //string searchTerm = HttpContext.Request.QueryString.Value.Split('=').LastOrDefault();  // Uden Model binding
 
-            Restaurants = _restaurantService.GetRestaurantsByName(SearchTerm).ToList();
+            //Restaurants = _restaurantService.GetRestaurantsByName(SearchTerm).ToList();
         }
     }
 }

@@ -13,6 +13,9 @@ namespace ServiceLayer
             ctx.Database.EnsureCreated();
             _ctx = ctx;
         }
+
+       
+
         public IQueryable<Restaurant> GetRestaurants() 
         {
             return _ctx.Restaurants;
@@ -23,6 +26,11 @@ namespace ServiceLayer
             return _ctx.Restaurants
                 .Where(r => string.IsNullOrEmpty(name) || r.Name.StartsWith(name))
                 .OrderBy(r => r.Name);
+        }
+
+        public Restaurant GetRestaurantById(int restaurantId)
+        {
+            return _ctx.Restaurants.Find(restaurantId);
         }
     }
 }

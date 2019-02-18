@@ -1,4 +1,5 @@
 ﻿using DataLayer.Entities;
+using System.Collections;
 using System.Linq;
 
 namespace ServiceLayer
@@ -7,5 +8,6 @@ namespace ServiceLayer
     {
         IQueryable<Restaurant> GetRestaurants();
         IQueryable<Restaurant> GetRestaurantsByName(string name = null);
+        Restaurant GetRestaurantById(int restaurantId);
     }
 }

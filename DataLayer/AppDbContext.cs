@@ -15,9 +15,9 @@ namespace DataLayer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Restaurant>().HasData(
-                new Restaurant { Id = 1, Name = "Scott's Pizza", Loacation = "Maryland", Cuisine = CuisineType.Italian },
-                new Restaurant { Id = 2, Name = "Cinnamon Club", Loacation = "London", Cuisine = CuisineType.Italian },
-                new Restaurant { Id = 3, Name = "La Costa", Loacation = "California", Cuisine = CuisineType.Mexican }
+                new Restaurant { Id = 1, Name = "Scott's Pizza", Location = "Maryland", Cuisine = CuisineType.Italian },
+                new Restaurant { Id = 2, Name = "Cinnamon Club", Location = "London", Cuisine = CuisineType.Italian },
+                new Restaurant { Id = 3, Name = "La Costa", Location = "California", Cuisine = CuisineType.Mexican }
            );
         }
     }
