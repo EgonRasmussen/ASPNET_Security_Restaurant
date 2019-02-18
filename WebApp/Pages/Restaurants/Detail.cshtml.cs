@@ -8,6 +8,8 @@ namespace WebApp.Pages.Restaurants
     public class DetailModel : PageModel
     {
         public Restaurant Restaurant { get; set; }
+        [TempData]
+        public string Message { get; set; }
 
         private readonly IRestaurantService _restaurantService;
 

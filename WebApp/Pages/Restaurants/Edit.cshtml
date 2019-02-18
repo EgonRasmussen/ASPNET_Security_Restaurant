@@ -1,4 +1,4 @@
-﻿@page "{restaurantId:int}"
+﻿@page "{restaurantId:int?}"
 
 @model WebApp.Pages.Restaurants.EditModel
 @{
@@ -26,5 +26,5 @@
                 class="form-control"></select>
         <span class="text-danger" asp-validation-for="Restaurant.Cuisine"></span>
     </div>
-    <button type="submit" class="btn btn-info">Save</button>
+    <button type="submit" class="btn btn-info">Add New</button>
 </form>
