@@ -32,5 +32,18 @@ namespace ServiceLayer
         {
             return _ctx.Restaurants.Find(restaurantId);
         }
+
+        public Restaurant Update(Restaurant updatedRedstaurant)
+        {
+            _ctx.Restaurants.Update(updatedRedstaurant);
+            
+            return updatedRedstaurant;
+        }
+
+        public int Commit()
+        {
+            _ctx.SaveChanges();
+            return 0;
+        }
     }
 }

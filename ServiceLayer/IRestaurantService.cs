@@ -9,5 +9,7 @@ namespace ServiceLayer
         IQueryable<Restaurant> GetRestaurants();
         IQueryable<Restaurant> GetRestaurantsByName(string name = null);
         Restaurant GetRestaurantById(int restaurantId);
+        Restaurant Update(Restaurant updatedRedstaurant);
+        int Commit();
     }
 }
