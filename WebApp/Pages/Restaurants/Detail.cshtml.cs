@@ -16,20 +16,15 @@ namespace WebApp.Pages.Restaurants
             _restaurantService = restaurantService;
         }
 
-        public void OnGet(int restaurantId)
+        public IActionResult OnGet(int restaurantId)
         {
             Restaurant = _restaurantService.GetRestaurantById(restaurantId);
+
+            if (Restaurant == null)
+            {
+                return RedirectToPage("./NotFound");
+            }
+            return Page();
         }
-
-        //public IActionResult OnGet(int restaurantId)
-        //{
-        //    Restaurant = _restaurantService.GetRestaurantById(restaurantId);
-
-        //    if (Restaurant == null)
-        //    {
-        //        return RedirectToPage("./NotFound");
-        //    }
-        //    return Page();
-        //}
     }
 }
