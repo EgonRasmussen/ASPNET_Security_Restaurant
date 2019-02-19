@@ -51,6 +51,8 @@
     </div>
 
     <footer class="border-top footer text-muted">
+        @RenderSection("footer", required: false)
+
         <div class="container">
             &copy; 2019 - Razor Pages WebApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>

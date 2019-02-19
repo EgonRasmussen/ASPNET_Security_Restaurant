@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace ServiceLayer
@@ -36,6 +37,9 @@ namespace ServiceLayer
         public Restaurant Update(Restaurant updatedRedstaurant)
         {
             _ctx.Restaurants.Update(updatedRedstaurant);
+
+            //var entity = _ctx.Restaurants.Attach(updatedRedstaurant);
+            //entity.State = EntityState.Modified;
             
             return updatedRedstaurant;
         }  
@@ -50,6 +54,16 @@ namespace ServiceLayer
         {
             _ctx.SaveChanges();
             return 0;
+        }
+
+        public Restaurant Delete(int id)
+        {
+            var restaurant = GetRestaurantById(id);
+            if (restaurant != null)
+            {
+                _ctx.Restaurants.Remove(restaurant);
+            }
+            return restaurant;
         }
     }
 }

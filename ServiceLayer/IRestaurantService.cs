@@ -11,6 +11,7 @@ namespace ServiceLayer
         Restaurant GetRestaurantById(int restaurantId);
         Restaurant Update(Restaurant updatedRedstaurant);
         Restaurant Add(Restaurant newRestaurant);
+        Restaurant Delete(int id);
         int Commit();
     }
 }
