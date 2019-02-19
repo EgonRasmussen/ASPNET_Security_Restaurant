@@ -10,7 +10,7 @@ namespace ServiceLayer
 
         public RestaurantService(AppDbContext ctx)
         {
-            //ctx.Database.EnsureCreated();
+            ctx.Database.EnsureCreated();
             _ctx = ctx;
         }
 
