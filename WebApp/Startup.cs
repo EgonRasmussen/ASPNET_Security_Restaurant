@@ -23,9 +23,7 @@ namespace WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("InMemoryDb"));
-
             services.AddScoped<IRestaurantService, RestaurantService>();
-
             services.AddRazorPages()
                .AddRazorPagesOptions(options =>
                {
@@ -38,7 +36,6 @@ namespace WebApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
             else
             {
