@@ -6,15 +6,16 @@
 1. I `Startup.cs` udkommenteres `app.UseHttpsRedirection()`;
 2. Start Fiddler, filter = localhost og ingen HTTPS decryption (Tools | Options | HTTPS og deselect Decrypt HTTPS traffic)
 3. Web uden at benytte SSL, http://localhost:63919 og vælg CREATE. Send en submit og se at alle data er synlige i POST request pakken.
-4. Web med SSL, https://localhost:44358/ og vælg CREATE. Send en submit og se at alle data er **krypterede** i POST request pakken.
-
+4. (virker ikke når først Decryption har været aktiveret): Web med SSL, https://localhost:44358/ og vælg CREATE. Send en submit og se at alle data er **krypterede** i POST request pakken.
+5. Slå Decrypt HTTPS traffic til i Fiddler, genstart Fiddler og web SSL adressen og CREATE. Parametre kan stadig ses - men kun fordi Fiddler er "Man in the middle" og dekrypterer.
 &nbsp;
 ## B. Sikrer at HTTPS benyttes
 1. I `Startup.cs` tilføjes `app.UseHttpsRedirection()`;
 2. Web uden at benytte SSL, http://localhost:63919 og se omstillingen med `HTTP 307` i Fiddler.
 3. Bemærk at kun hvis` UseHttpsRedirection()` kommer før `UseStaticFiles()` vil css og html være krypteret
 4. Vigtigt at benytte `relative links` til alle lokale ressourcer, så scheme automatisk tilpasses
-5. Kan konfigurers i servicen:
+5. Bemærk linket til et billede, hvis src peger på et http-link. Det får hele siden til at være usikker.
+6. Portnummer kan konfigurers i servicen, men er normalt styret af webserveren:
 ```c#
 services.AddHttpsRedirection((opts) =>
 {
@@ -23,7 +24,7 @@ services.AddHttpsRedirection((opts) =>
 ```
 &nbsp;
 ## C. HSTS
-1. Inkommentér `UseTSTS();`
+1. Inkommentér `UseHSTS();`
 2. Konfigurér service med:
 ```c#
 services.AddHsts(opts =>
@@ -44,7 +45,7 @@ Følgende kræver at siten er deployet til andet end localhost (localhost er exclu
 
 
 # 2. Prevent Cross-Site Request Forgery (XSRF/CSRF)
-
+ Se denne Pluralsight video https://app.pluralsight.com/course-player?clipId=9cbe2b8b-8ead-43e2-97a5-7faaa13744d9
 > [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-3.1)
 
 1. I DevTools studeres en POST pakke i Element, hvor der browses til form. Prøv at redigere hidden attributten `__RequestVerificationToken`
@@ -55,7 +56,7 @@ Denne kode sættes i html af serveren samtidigt med at den også gemmer den i en c
     
 XCSS er bygget default ind i RazorPages. I ASP.NET Core MVC
     skal man manuelt tilføje [ValidateAntiForgeryToken] til samtlige POST-actions.
-    Se evt. denne Pluralsight video https://app.pluralsight.com/course-player?clipId=9cbe2b8b-8ead-43e2-97a5-7faaa13744d9
+   
 
 
 # 3. Cross Site Scripting (XSS)
