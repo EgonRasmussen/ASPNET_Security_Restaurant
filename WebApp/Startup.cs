@@ -30,6 +30,12 @@ namespace WebApp
                {
                    options.Conventions.AddPageRoute("/Restaurants/List", "");
                });
+
+            //services.AddHsts(opts =>
+            //{
+            //    opts.IncludeSubDomains = true;
+            //    opts.MaxAge = TimeSpan.FromMinutes(1);
+            //});
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,6 +43,7 @@ namespace WebApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //app.UseHsts();
             }
             else
             {

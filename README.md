@@ -13,15 +13,12 @@
 1. I `Startup.cs` tilføjes `app.UseHttpsRedirection()`;
 2. Web uden at benytte SSL, http://localhost:63919 og se omstillingen med `HTTP 307` i Fiddler. Læs om [HTTP 307](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/307)
 3. Bemærk at kun hvis` UseHttpsRedirection()` kommer før `UseStaticFiles()` vil css og html være krypteret
-4. Bemærk linket til et billede, hvis src peger på et http-link. Det får hele siden til at være usikker. Demo af Details for Cinnamon Club, hvor et billede fra Apache loades via http!
-5. Vigtigt at benytte `relative links` til alle lokale ressourcer, så scheme automatisk tilpasses.
-6. Kig i **DevTools** under **Console** og læs warning om "Mixed Content".
 
 &nbsp;
 
 ## C. HSTS (HTTPS Strict Transport Security)
 
-Se denne video fra Pluralsight: https://app.pluralsight.com/course-player?clipId=8e64eaa2-9d1f-491c-a0da-01846cd43c59
+Se denne video fra Pluralsight: https://app.pluralsight.com/course-player?clipId=4a5a88b6-d619-45c7-ace6-5e5f15334210
 1. Inkommentér `UseHSTS();`
 2. Konfigurér service med:
 ```c#
@@ -33,7 +30,7 @@ services.AddHsts(opts =>
 ```
 Følgende kræver at siten er deployet til andet end localhost (localhost er excluded i browserens HSTS)
 
-3. I `Properties | Debug` fjernes flueben ved `Launch browser`
+3. I `Properties | Debug` fjernes flueben ved `Launch browser` så den ikke laver en indledende  Redirect inden vi er klar til at se på kommunikationen.
 4. Start og web: http://localhost:63919 med DevTools åben
 5. Bemærk `HTTP 307` og omdirigering til HTTPS. Se også i `Response Headers` at strict-transport-security er sat til 300 sekunder (5 minutter)
 
@@ -41,3 +38,8 @@ Følgende kræver at siten er deployet til andet end localhost (localhost er exclu
 
 6. Registrering for [preloading](https://hstspreload.org)
 
+## D. Mixed Content
+
+1. Bemærk linket til et billede, hvis src peger på et http-link. Det får hele siden til at være usikker, men Chrome forsøger en automatisk omdirigering til en HTTPS ressource. Og en sådan findes i demo-eksemplet. Demo af Details for Cinnamon Club, hvor et billede fra Apache loades via http!
+2. Vigtigt at benytte `relative links` til alle lokale ressourcer, så scheme automatisk tilpasses.
+3. Kig i **DevTools** under **Console** og læs warning om "Mixed Content".
